@@ -1,9 +1,10 @@
- 
+
 import React from "react";
 import Componente from "./Componente";
 import { Jorge } from "./componentes/Jorge"
 import { Input } from "./Vian"
  
+import { Yon } from "./components/yon/yon"
 
 function App() {
   return (
@@ -13,7 +14,8 @@ function App() {
         <Input name="Vianey Galicia" />
          <Jorge />
       <Componente />
- 
+       <Yon />
+
     </>
   );
 }
