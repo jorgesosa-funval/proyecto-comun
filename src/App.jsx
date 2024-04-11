@@ -1,5 +1,5 @@
 import React from "react"
- 
+import Franco from "./componentes/Franco/Franco" 
  
 
 function App() {
@@ -7,8 +7,7 @@ function App() {
 
   return (
     <>
-        <h1>Hola Mundo</h1>
-        <h2>Hola Yagual</h2>
+        <Franco/>
     </>
   )
 }
