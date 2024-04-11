@@ -1,4 +1,6 @@
-import React from "react";
+
+import React from "react"
+import { JeanIc } from "./components/JeanIc"
 import Franco from "./componentes/Franco/Franco" 
 import Componente from "./Componente";
 import { Jorge } from "./componentes/Jorge"
@@ -6,10 +8,11 @@ import { Input } from "./Vian"
 import { Henry } from "./componentes/Henry"
 import { Yon } from "./components/yon/yon"
 
-
 function App() {
   return (
     <>
+      <JeanIc/>
+
         <Franco/>
         <h1>Hola Mundo</h1>
         <h2>Hola Yagual</h2>
