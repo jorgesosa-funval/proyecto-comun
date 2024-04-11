@@ -9,6 +9,7 @@ function App() {
     <>
         <h1>Hola Mundo</h1>
         <h2>Hola Yagual</h2>
+        <YagualElement/>
     </>
   )
 }
