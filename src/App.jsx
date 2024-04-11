@@ -13,6 +13,7 @@ function App() {
         <Franco/>
         <h1>Hola Mundo</h1>
         <h2>Hola Yagual</h2>
+        <YagualElement/>
         <Input name="Vianey Galicia" />
         <Jorge />
         <Componente />
