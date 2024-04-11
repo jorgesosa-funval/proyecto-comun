@@ -1,27 +1,29 @@
 
 import React from "react"
-import { JeanIc } from "./components/JeanIc"
-import Franco from "./componentes/Franco/Franco" 
-import Componente from "./Componente";
-import { Jorge } from "./componentes/Jorge"
-import { Input } from "./Vian"
-import { Henry } from "./componentes/Henry"
-import { Yon } from "./components/yon/yon"
+import { Joel } from "./componentes/Joel";
+import { Jorge } from "./componentes/Jorge";
+import { YagualElement } from "./componentes/YagualElement";
+import { JeanIc } from "./componentes/JeanIc";
+import { Input } from "./componentes/Vian";
+import { Henry } from "./componentes/Henry";
+import { Franco } from "./componentes/Franco/Franco";
+import { Yon } from "./componentes/Yon";
+import Daniel from "./componentes/Daniel";
+import FrancoJose from "./componentes/Daniel"
 
 function App() {
   return (
     <>
-      <JeanIc/>
-
-        <Franco/>
-        <h1>Hola Mundo</h1>
-        <h2>Hola Yagual</h2>
-        <YagualElement/>
-        <Input name="Vianey Galicia" />
-        <Jorge />
-        <Componente />
-        <Yon />
-        <Henry/>
+      <JeanIc />
+      <Franco />
+      <YagualElement />
+      <Input name="Vianey Galicia" />
+      <Jorge />
+      <Joel />
+      <Yon />
+      <Henry />
+      <Daniel/>
+      <FrancoJose/>
     </>
   );
 }

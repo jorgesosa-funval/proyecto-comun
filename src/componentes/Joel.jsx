@@ -1,6 +1,6 @@
 import React from "react";
 
-function Componente() {
+export function Joel() {
   return (
     <div style={{ border: "1px solid black", padding: "10px" }}>
       JOEL
@@ -8,4 +8,4 @@ function Componente() {
   );
 }
 
-export default Componente;
+ 
