@@ -1,8 +1,8 @@
-import React from "react"
  
+import React from "react";
+import Componente from "./Componente";
 import { Jorge } from "./componentes/Jorge"
 import { Input } from "./Vian"
- 
  
 
 function App() {
@@ -12,9 +12,10 @@ function App() {
         <h2>Hola Yagual</h2>
         <Input name="Vianey Galicia" />
          <Jorge />
+      <Componente />
  
     </>
-  )
+  );
 }
 
-export default App
+export default App;
