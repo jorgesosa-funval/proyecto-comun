@@ -1,16 +1,12 @@
-import React from "react"
- 
- 
+import React from "react";
+import Componente from "./Componente";
 
 function App() {
- 
-
   return (
     <>
-        <h1>Hola Mundo</h1>
-        <h2>Hola Yagual</h2>
+      <Componente />
     </>
-  )
+  );
 }
 
-export default App
+export default App;
