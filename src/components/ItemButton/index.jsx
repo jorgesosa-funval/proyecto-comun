@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const ItemButton = ({ variant, content }) => {
+export const ItemButton = ({ variant, content, onClick }) => {
   const variants = {
     green: 'bg-green-500 rounded-md hover:bg-green-400 active:bg-green-600',
     amber: 'bg-amber-500 rounded-md hover:bg-amber-400 active:bg-amber-600',
@@ -10,7 +10,7 @@ export const ItemButton = ({ variant, content }) => {
   }
   return (
 
-    <button className={`w-4/6 text-gray-200 text-xl font-bold ${variants[variant]} border h-12 rounded-md self-center`}>
+    <button onClick={onClick} className={`w-4/6 text-gray-200 text-xl font-bold ${variants[variant]} border h-12 rounded-md self-center`}>
       {content}
     </button>
 

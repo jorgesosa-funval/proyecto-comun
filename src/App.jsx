@@ -1,34 +1,30 @@
-import React, { useState } from "react"
-import { ItemButton } from "./components/ItemButton"
-import { MainInput } from "./components/Input"
+import React, { useEffect, useState } from "react"
 import { MainContainer } from "./components/MainContainer"
-import { Textarea } from "./components/Texarea"
-import { Dropdown } from "./components/Dropdown"
+import { NewIncome } from "./screens/NewIncome"
+import { Main } from "./screens/Main"
+import { NewOutcome } from "./screens/NewOutcome"
 
 
 
 function App() {
-  const [amount, setAmount] = useState('00.00')
 
+
+  const [amount, setAmount] = useState('00.00')
+  const [screen, setScreen] = useState({title: "IO - CONTROL", view:"main"})
+
+  useEffect(() => {
+    console.log(screen)
+  }, [])
   return (
     <>
 
-      <MainContainer title="Nuevo Ingreso">
+      <MainContainer title={screen?.title}>
 
-        <MainInput value={amount} disabled={true} />
+         {screen?.view === "main" && <Main setScreen={setScreen} amount={amount} />}
+         {screen?.view === "incomes" && <NewIncome setScreen={setScreen} amount={amount}/>}
+         {screen?.view === "outcomes" && <NewOutcome setScreen={setScreen} amount={amount}/>}
 
-        {/* <div className="w-full py-12 flex flex-col items-center gap-8 h-full">
-          <ItemButton variant="amber" content="Ingreso" />
-          <ItemButton variant="cyan" content="Gastos" />
-          <ItemButton variant="pink" content="Reporte" />
-          <ItemButton variant="green" content="config" />
-        </div> */}
-
-        <Dropdown/>
-
-        <Textarea/>
-
-        <ItemButton variant="amber" content="Guardar"/>
+ 
 
       </MainContainer>
 
