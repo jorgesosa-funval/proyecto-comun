@@ -7,6 +7,7 @@ import { NewOutcome } from "./screens/NewOutcome"
 
 
 function App() {
+ 
 
 
   const [amount, setAmount] = useState('00.00')
@@ -22,7 +23,7 @@ function App() {
 
          {screen?.view === "main" && <Main setScreen={setScreen} amount={amount} />}
          {screen?.view === "incomes" && <NewIncome setScreen={setScreen} amount={amount}/>}
-         {screen?.view === "outcomes" && <NewOutcome setScreen={setScreen} amount={amount}/>}
+         {screen?.view === "outcome" && <NewOutcome setScreen={setScreen} amount={amount}/>}
 
  
 
