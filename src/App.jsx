@@ -14,7 +14,7 @@ const outcomes = [];
 
 function App() {
 
-  const [amount, setAmount] = useState(100)
+  const [amount, setAmount] = useState(0)
 
   const [screen, setScreen] = useState({ title: "IO - CONTROL", view: "main" })
 
