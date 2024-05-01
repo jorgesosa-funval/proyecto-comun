@@ -1,29 +1,52 @@
 
-import React from "react"
-import { Joel } from "./componentes/Joel";
-import { Jorge } from "./componentes/Jorge";
-import { YagualElement } from "./componentes/YagualElement";
-import { JeanIc } from "./componentes/JeanIc";
-import { Input } from "./componentes/Vian";
-import { Henry } from "./componentes/Henry";
-import { Franco } from "./componentes/Franco/Franco";
-import { Yon } from "./componentes/Yon";
-import Daniel from "./componentes/Daniel";
-import FrancoJose from "./componentes/Daniel"
+import React, { useEffect, useState } from "react"
+import { MainContainer } from "./components/MainContainer"
+import { NewIncome } from "./screens/NewIncome"
+import { Main } from "./screens/Main"
+import { NewOutcome } from "./screens/NewOutcome"
+import { BackButton } from "./components/BackButton"
+import { Report } from "./screens/Report"
+
+const incomes = [];
+
+const outcomes = [];
+
 
 function App() {
+
+  const [amount, setAmount] = useState(100)
+
+  const [screen, setScreen] = useState({ title: "IO - CONTROL", view: "main" })
+
+  useEffect(() => {
+    if (localStorage.getItem('amount')) {
+      setAmount(parseFloat(localStorage.getItem('amount')))
+    } else {
+      localStorage.setItem('amount', amount)
+    }
+
+    if (!localStorage.getItem('incomes')) {
+      localStorage.setItem('incomes', JSON.stringify(incomes))
+    }
+
+    if (!localStorage.getItem('outcomes')) {
+      localStorage.setItem('outcomes', JSON.stringify(outcomes))
+    }
+  }, [])
+
   return (
     <>
-      <JeanIc />
-      <Franco />
-      <YagualElement />
-      <Input name="Vianey Galicia" />
-      <Jorge />
-      <Joel />
-      <Yon />
-      <Henry />
-      <Daniel/>
-      <FrancoJose/>
+
+      <MainContainer title={screen?.title}>
+        {screen?.view !== "main" && <BackButton onClick={() => setScreen( { title: "IO - CONTROL", view: "main" })} />}
+        {screen?.view === "main" && <Main setScreen={setScreen} amount={amount} />}
+        {screen?.view === "incomes" && <NewIncome setScreen={setScreen} amount={amount} setAmount={setAmount} />}
+        {screen?.view === "outcome" && <NewOutcome setScreen={setScreen} amount={amount} setAmount={setAmount} />}
+        {screen?.view === "report" && <Report setScreen={setScreen} />}
+      </MainContainer>
+
+
+
     </>
   );
 }
