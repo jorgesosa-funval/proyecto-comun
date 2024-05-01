@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from "react"
 import { MainContainer } from "./components/MainContainer"
 import { NewIncome } from "./screens/NewIncome"
@@ -47,7 +48,7 @@ function App() {
 
 
     </>
-  )
+  );
 }
 
-export default App
+export default App;
