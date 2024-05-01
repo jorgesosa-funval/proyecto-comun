@@ -64,8 +64,8 @@ export const NewOutcome = ({ amount, setAmount, setScreen }) => {
         <>
 
             <form onSubmit={submitOutcome} className='flex flex-col justify-center'>
-                <MainInput value={data.amount} disabled={false} onChange={(e) => setData({ ...data, monto: parseInt(e.target.value) })} />
-                <Dropdown lbl_fild="category" value_field="id" options={categories} selectedValue={data.categoria} onChange={(cat) => setData({ ...data, category: cat })} />
+                <MainInput value={data.monto} disabled={false} onChange={(e) => setData({ ...data, monto: parseInt(e.target.value) })} />
+                <Dropdown lbl_fild="category" value_field="id" options={categories} selectedValue={data.categoria} onChange={(cat) => setData({ ...data, categoria: cat })} />
                 <Textarea value={data.coment} onChange={(e) => setData({ ...data, coment: e.target.value })} />
                 <ItemButton variant="amber" content="Guardar" />
             </form>

@@ -88,8 +88,8 @@ export const Report = () => {
             merge.forEach(mg => {
                 merged.push({
                     
-                    amount: mg.amount,
-                    type: mg.category ? 'out' : 'in',
+                    monto: mg.monto,
+                    type: mg.categoria ? 'out' : 'in',
                     saldo: mg.saldo,
                     fecha: mg.fecha,
                 })

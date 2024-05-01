@@ -43,7 +43,7 @@ export const NewIncome = ({ amount, setAmount, setScreen }) => {
     return (
         <>
             <form onSubmit={handleSubmit} className='flex flex-col items-center'>
-                <MainInput value={data.amount} onChange={(e) => setData({ ...data, monto: parseFloat(e.target.value) })} disabled={false} />
+                <MainInput value={data.monto} onChange={(e) => setData({ ...data, monto: parseFloat(e.target.value) })} disabled={false} />
 
                 <Textarea onChange={(e) => setData({ ...data, coment: e.target.value })} />
 
