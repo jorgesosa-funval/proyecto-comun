@@ -1,33 +1,111 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Table } from '../components/Table'
 import { Dropdown } from '../components/Dropdown'
-const data = [
-    {
-        id: 1,
-        fecha: "2024-12-1",
-        monto: "2,405",
-        tipo: "In",
-        category: "Comida para comer cuando como",
-    },
-    {
-        id: 2,
-        fecha: "2024-12-2",
-        monto: "2,400",
-        tipo: "Sa",
-        category: "Comida para comer cuando como",
-    },
-    {
-        id: 3,
-        fecha: "2024-12-3",
-        monto: "2,402",
-        tipo: "In",
-        category: "Comida para comer cuando como",
-    },
-]
+
+const categories = [
+    { id: 1, category: 'Alimentación' }, // Food
+    { id: 2, category: 'Transporte' }, // Transportation
+    { id: 3, category: 'Vivienda' }, // Housing
+    { id: 4, category: 'Servicios Públicos' }, // Utilities
+    { id: 5, category: 'Salud' }, // Health
+    { id: 6, category: 'Educación' }, // Education
+    { id: 7, category: 'Entretenimiento' }, // Entertainment
+    { id: 8, category: 'Prendas de vestir' }, // Clothing
+    { id: 9, category: 'Ahorros' }, // Savings
+    { id: 10, category: 'Otros' }, // Other
+];
 export const Report = () => {
+    const [filtered, setFiltered] = useState({})
+    const [data, setData] = useState([])
+
+    const formatDate = (baseDate, format = 'en-US') => {
+        const utcDate = new Date(baseDate).getTime() + (new Date()).getTimezoneOffset() * 60000;
+        const date = new Date(utcDate);
+
+        const options = {
+            year: 'numeric',
+            month: 'numeric',
+            day: 'numeric',
+        };
+
+        return date.toLocaleString(format, options);
+    };
+
     const pruebaForm = (e) => {
-        console.log(e.target.name)
+        const name = e.target.name
+        if (e.target.type === 'checkbox') {
+
+            setFiltered({ ...filtered, [name]: e.target.checked })
+            return;
+        }
+        if (e.target.type === 'date') {
+            setFiltered({ ...filtered, [name]: formatDate(e.target.value) })
+        }
+
     }
+
+    useEffect(() => {
+        const incomes = JSON.parse(localStorage.incomes);
+        const outcomes = JSON.parse(localStorage.outcomes);
+        console.log(outcomes, incomes)
+        function compareDates(a, b) {
+            const dateA = new Date(a.fecha);
+            const dateB = new Date(b.fecha);
+            return dateA - dateB; 
+        }
+
+
+        if (filtered.entradas && !filtered.salidas && filtered.inicio != '' && filtered.final) {
+
+            const rs = incomes.filter(a => (new Date(a.fecha)) >= (new Date(filtered.inicio)) && (new Date(a.fecha)) <= (new Date(filtered.final)));
+
+            setData(rs);
+            return;
+        }
+
+        if (!filtered.entradas && filtered.salidas && filtered.inicio && filtered.final && !filtered.category) {
+
+            const rs = outcomes.filter(a => (new Date(a.fecha)) >= (new Date(filtered.inicio)) && (new Date(a.fecha)) <= (new Date(filtered.final)));
+
+            setData(rs);
+
+            return;
+        }
+
+        if (!filtered.entradas && filtered.salidas && filtered.inicio && filtered.final && filtered.category) {
+
+            const rs = outcomes.filter(a => (new Date(a.fecha)) >= (new Date(filtered.inicio)) && (new Date(a.fecha)) <= (new Date(filtered.final)) && a.category === filtered.category);
+
+            setData(rs);
+
+            return;
+        }
+
+        if (filtered.inicio && filtered.final) {
+            const merged = []
+            const merge = incomes.concat(outcomes);
+
+            merge.forEach(mg => {
+                merged.push({
+                    
+                    amount: mg.amount,
+                    type: mg.category ? 'out' : 'in',
+                    saldo: mg.saldo,
+                    fecha: mg.fecha,
+                })
+            });
+
+            const rs = merged.filter(a => (new Date(a.fecha)) >= (new Date(filtered.inicio)) && (new Date(a.fecha)) <= (new Date(filtered.final)));
+
+            rs.sort(compareDates);
+
+            setData(rs);
+
+            return;
+        }
+
+    }, [filtered])
+
     return (
         <>
             <form onChange={pruebaForm}>
@@ -56,10 +134,14 @@ export const Report = () => {
                     </label>
                 </div>
             </form>
-            <Dropdown />
 
-            <Table data={data} />
+            {filtered?.salidas && !filtered?.entradas &&
+                <Dropdown lbl_fild="category" value_field="id" options={categories} selectedValue={filtered.category} onChange={(cat) => setFiltered({ ...filtered, category: cat })} />
+            }
 
+            {data.length > 0 &&
+                <Table data={data} formatDate={formatDate} />
+            }
         </>
     )
 }

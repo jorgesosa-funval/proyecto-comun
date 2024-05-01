@@ -1,7 +1,6 @@
 import React from 'react'
 import { MainInput } from '../components/Input'
 import { ItemButton } from '../components/ItemButton'
-import { Table } from '../components/Table'
 
 export const Main = ({ amount, setScreen }) => {
    
